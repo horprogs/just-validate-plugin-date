@@ -38,10 +38,6 @@ const getComparedDate = (
   }
 
   if (!isValid(comparedDate)) {
-    console.error(
-      'isBefore/isAfter fields should be a Date or a valid date string! The result will be always invalid'
-    );
-
     return null;
   }
 
