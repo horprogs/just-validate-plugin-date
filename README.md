@@ -1,6 +1,6 @@
 # JustValidate plugin date
 
-[![codecov](https://codecov.io/gh/horprogs/Just-validate-plugin-date/branch/master/graph/badge.svg?token=O6DXXL5TUU)](https://codecov.io/gh/horprogs/Just-validate)
+[![codecov](https://codecov.io/gh/horprogs/just-validate-plugin-date/branch/main/graph/badge.svg?token=B98J47L4YI)](https://codecov.io/gh/horprogs/just-validate-plugin-date)
 <a href="https://bundlephobia.com/result?p=just-validate-plugin-date@latest" target="\_parent">
 <img alt="" src="https://badgen.net/bundlephobia/minzip/just-validate-plugin-date@latest" />
 </a>
