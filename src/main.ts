@@ -5,10 +5,10 @@ import isBefore from 'date-fns/isAfter';
 import isValid from 'date-fns/isValid';
 import parse from 'date-fns/parse';
 
-import type {
-  PluginValueType,
-  PluginContextType,
-} from 'just-validate/dist/modules/interfaces';
+type PluginValueType = string | boolean;
+type PluginFieldsType = {
+  [key: string]: any;
+};
 
 interface ConfigInterface {
   format?: string;
@@ -46,10 +46,6 @@ const getComparedDate = (
   }
 
   if (!isValid(sourceDate)) {
-    console.error(
-      'It is impossible convert value to the valid Date. Dates should be in the same format as defined in format field. The result will be always invalid'
-    );
-
     return null;
   }
 
@@ -83,8 +79,8 @@ const checkIsAfter = (
 };
 
 const pluginDate =
-  (func: (fields: PluginContextType) => ConfigInterface) =>
-  (value: PluginValueType, fields: PluginContextType) => {
+  (func: (fields: PluginFieldsType) => ConfigInterface) =>
+  (value: PluginValueType, fields: PluginFieldsType) => {
     const config = func(fields);
     const valid: KeysEnum<ConfigInterface> = {
       format: true,

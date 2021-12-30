@@ -10,9 +10,9 @@ export default defineConfig(({ command, mode }) => {
       build: {
         lib: {
           entry: path.resolve(__dirname, 'src/main.ts'),
-          name: 'JustValidate',
+          name: 'JustValidatePluginDate',
           fileName: (format) =>
-            `just-validate.${format === 'umd' ? 'production.min' : format}.js`,
+            `just-validate-plugin-date.${format === 'umd' ? 'production.min' : format}.js`,
         },
         rollupOptions: {},
       },

@@ -44,7 +44,7 @@ describe('plugin date', () => {
       }))('2021-10-05', {})
     ).toBeFalsy();
 
-    expect(console.error).toHaveBeenCalled();
+    expect(console.error).not.toHaveBeenCalled();
     // @ts-ignore
     console.error.mockReset();
 
@@ -85,6 +85,7 @@ describe('plugin date', () => {
         format: 'dd/MM/yyyy',
       }))('10/12/2021', {})
     ).toBeTruthy();
+
     expect(
       pluginDate(() => ({
         format: 'dd/MM/yyyy',
@@ -108,6 +109,13 @@ describe('plugin date', () => {
         format: 'd MMM yy',
       }))('01/12/2021', {})
     ).toBeFalsy();
+
+    // https://github.com/date-fns/date-fns/issues/2087
+    // expect(
+    //   pluginDate(() => ({
+    //     format: 'dd/MM/yyyy',
+    //   }))('01/12/21', {})
+    // ).toBeFalsy();
   });
 
   test('should be able to validate isBefore', async () => {
