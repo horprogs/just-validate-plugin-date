@@ -33,7 +33,7 @@ describe('plugin date', () => {
       }))('2021-10-05', {})
     ).toBeFalsy();
 
-    expect(console.error).toHaveBeenCalled();
+    expect(console.error).not.toHaveBeenCalled();
     // @ts-ignore
     console.error.mockReset();
 
@@ -55,7 +55,7 @@ describe('plugin date', () => {
       }))('2021-10-05', {})
     ).toBeFalsy();
 
-    expect(console.error).toHaveBeenCalled();
+    expect(console.error).not.toHaveBeenCalled();
     // @ts-ignore
     console.error.mockReset();
 
