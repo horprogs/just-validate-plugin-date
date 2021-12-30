@@ -1,6 +1,6 @@
 {
   "name": "just-validate-plugin-date",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Date plugin for JustValidate",
   "scripts": {
     "semantic-release": "semantic-release",
