@@ -4,9 +4,7 @@
 <a href="https://bundlephobia.com/result?p=just-validate-plugin-date@latest" target="\_parent">
 <img alt="" src="https://badgen.net/bundlephobia/minzip/just-validate-plugin-date@latest" />
 </a>
-
-[//]: # '[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6c7a25cc9fdb4bf8869884339418352d)](https://www.codacy.com/gh/horprogs/Just-validate/dashboard?utm_source=github.com&utm_medium=referral&utm_content=horprogs/Just-validate&utm_campaign=Badge_Grade)'
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f730fb9086964a74b2b01e56c3d8efe9)](https://www.codacy.com/gh/horprogs/just-validate-plugin-date/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=horprogs/just-validate-plugin-date&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/horprogs/Just-validate-plugin-date/badge.svg)](https://snyk.io/test/github/horprogs/Just-validate-plugin-date)
 [![Release workflow](https://github.com/horprogs/Just-validate-plugin-date/workflows/Test%20and%20Release/badge.svg)](https://github.com/horprogs/Just-validate-plugin-date/actions)
 
