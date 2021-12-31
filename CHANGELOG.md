@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/horprogs/Just-validate-plugin-date/compare/v1.0.1...v1.1.0) (2021-12-31)
+
+
+### Features
+
+* add required option ([5f89fb0](https://github.com/horprogs/Just-validate-plugin-date/commit/5f89fb0d7e0e7aa4a691409e153ba8e2281f30a2))
+
 ## [1.0.1](https://github.com/horprogs/Just-validate-plugin-date/compare/v1.0.0...v1.0.1) (2021-12-30)
 
 
