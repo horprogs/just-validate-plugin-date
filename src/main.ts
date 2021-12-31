@@ -14,6 +14,7 @@ interface ConfigInterface {
   format?: string;
   isAfter?: string | Date;
   isBefore?: string | Date;
+  required?: boolean;
 }
 
 type KeysEnum<T> = { [P in keyof Required<T>]: boolean };
@@ -82,6 +83,7 @@ const pluginDate =
       format: true,
       isAfter: true,
       isBefore: true,
+      required: true,
     };
 
     if (typeof value !== 'string') {
@@ -90,6 +92,10 @@ const pluginDate =
       );
 
       return false;
+    }
+
+    if (!config.required && value === '') {
+      return true;
     }
 
     if (config.format !== undefined) {

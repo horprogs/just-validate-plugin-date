@@ -44,6 +44,7 @@ Check more details and examples here: https://github.com/horprogs/Just-validate
 
 ```js
 JustValidatePluginDate((fields) => ({
+  required: true,
   format: 'dd/MM/yyyy',
   isAfter: fields['#date_after'].elem.value,
   isBefore: fields['#date_before'].elem.value,

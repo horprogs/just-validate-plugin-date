@@ -79,6 +79,38 @@ describe('plugin date', () => {
     }).toThrow();
   });
 
+  test('should be able to validate required date', async () => {
+    expect(
+      pluginDate(() => ({
+        format: 'dd/MM/yyyy',
+      }))('', {})
+    ).toBeTruthy();
+
+    expect(
+      pluginDate(() => ({
+        format: 'dd/MM/yyyy',
+        isAfter: new Date(),
+        isBefore: new Date(),
+      }))('', {})
+    ).toBeTruthy();
+
+    expect(
+      pluginDate(() => ({
+        required: true,
+        format: 'dd/MM/yyyy',
+      }))('', {})
+    ).toBeFalsy();
+
+    expect(
+      pluginDate(() => ({
+        required: true,
+        format: 'dd/MM/yyyy',
+        isAfter: new Date(),
+        isBefore: new Date(),
+      }))('', {})
+    ).toBeFalsy();
+  });
+
   test('should be able to validate format matching', async () => {
     expect(
       pluginDate(() => ({
@@ -383,6 +415,13 @@ describe('plugin date', () => {
           rules: [],
         },
       })
+    ).toBeTruthy();
+
+    expect(
+      pluginDate(() => ({
+        isAfter: '1000-10-15',
+        isBefore: '1000-10-20',
+      }))('1000-10-16', {})
     ).toBeTruthy();
 
     expect(
