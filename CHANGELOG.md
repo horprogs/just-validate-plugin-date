@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/horprogs/Just-validate-plugin-date/compare/v1.1.0...v1.1.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* trigger release, remove engines package.json ([349f1d3](https://github.com/horprogs/Just-validate-plugin-date/commit/349f1d34dcc94d98e80e51b73daf292726872467))
+
 # [1.1.0](https://github.com/horprogs/Just-validate-plugin-date/compare/v1.0.1...v1.1.0) (2021-12-31)
 
 
