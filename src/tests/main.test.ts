@@ -77,6 +77,21 @@ describe('plugin date', () => {
         format: 'zzzxc',
       }))('2021-10-05', {});
     }).toThrow();
+
+    expect(
+      pluginDate(() => ({
+        format: 'dd/MM/yyyy',
+        isAfterOrEqual: '2021-10-06',
+        isBeforeOrEqual: '2021-10-07',
+      }))('2021-10-05', {})
+    ).toBeFalsy();
+
+    expect(
+      pluginDate(() => ({
+        format: 'dd/MM/yyyy',
+        isEqual: '2021-10-06',
+      }))('2021-10-06', {})
+    ).toBeFalsy();
   });
 
   test('should be able to validate required date', async () => {
@@ -148,6 +163,49 @@ describe('plugin date', () => {
     //     format: 'dd/MM/yyyy',
     //   }))('01/12/21', {})
     // ).toBeFalsy();
+  });
+
+  test('should be able to validate isEqual', async () => {
+    const elem = document.createElement('input');
+    elem.setAttribute('type', 'text');
+    elem.setAttribute('id', 'date_start');
+    elem.setAttribute('value', '11/12/2021');
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isEqual: fields['#date_start'].elem.value,
+      }))('10/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeFalsy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isEqual: fields['#date_start'].elem.value,
+      }))('12/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeFalsy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isEqual: fields['#date_start'].elem.value,
+      }))('11/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeTruthy();
   });
 
   test('should be able to validate isBefore', async () => {
@@ -229,6 +287,85 @@ describe('plugin date', () => {
     ).toBeFalsy();
   });
 
+  test('should be able to validate isBeforeOrEqual', async () => {
+    const elem = document.createElement('input');
+    elem.setAttribute('type', 'text');
+    elem.setAttribute('id', 'date_start');
+    elem.setAttribute('value', '11/12/2021');
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isBeforeOrEqual: fields['#date_start'].elem.value,
+      }))('10/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeTruthy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isBeforeOrEqual: fields['#date_start'].elem.value,
+      }))('10/11/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeTruthy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isBeforeOrEqual: fields['#date_start'].elem.value,
+      }))('10/12/2020', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeTruthy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isBeforeOrEqual: fields['#date_start'].elem.value,
+      }))('12/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeFalsy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isBeforeOrEqual: fields['#date_start'].elem.value,
+      }))('01/01/2022', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeFalsy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isBeforeOrEqual: fields['#date_start'].elem.value,
+      }))('11/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeTruthy();
+  });
+
   test('should be able to validate isAfter', async () => {
     const elem = document.createElement('input');
     elem.setAttribute('type', 'text');
@@ -306,6 +443,85 @@ describe('plugin date', () => {
         },
       })
     ).toBeFalsy();
+  });
+
+  test('should be able to validate isAfterOrEqual', async () => {
+    const elem = document.createElement('input');
+    elem.setAttribute('type', 'text');
+    elem.setAttribute('id', 'date_start');
+    elem.setAttribute('value', '11/12/2021');
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isAfterOrEqual: fields['#date_start'].elem.value,
+      }))('10/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeFalsy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isAfterOrEqual: fields['#date_start'].elem.value,
+      }))('10/11/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeFalsy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isAfterOrEqual: fields['#date_start'].elem.value,
+      }))('10/12/2020', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeFalsy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isAfterOrEqual: fields['#date_start'].elem.value,
+      }))('12/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeTruthy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isAfterOrEqual: fields['#date_start'].elem.value,
+      }))('01/01/2022', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeTruthy();
+
+    expect(
+      pluginDate((fields) => ({
+        format: 'dd/MM/yyyy',
+        isAfterOrEqual: fields['#date_start'].elem.value,
+      }))('11/12/2021', {
+        '#date_start': {
+          elem,
+          rules: [],
+        },
+      })
+    ).toBeTruthy();
   });
 
   test('should be able to validate isBefore and isAfter with different format', async () => {

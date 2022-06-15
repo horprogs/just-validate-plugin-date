@@ -2,6 +2,7 @@ import isMatch from 'date-fns/isMatch';
 import isDate from 'date-fns/isDate';
 import isAfter from 'date-fns/isAfter';
 import isBefore from 'date-fns/isAfter';
+import isEqual from 'date-fns/isEqual';
 import isValid from 'date-fns/isValid';
 import parse from 'date-fns/parse';
 
@@ -13,7 +14,10 @@ type PluginFieldsType = {
 interface ConfigInterface {
   format?: string;
   isAfter?: string | Date;
+  isAfterOrEqual?: string | Date;
   isBefore?: string | Date;
+  isBeforeOrEqual?: string | Date;
+  isEqual?: string | Date;
   required?: boolean;
 }
 
@@ -49,6 +53,19 @@ const getComparedDate = (
   return comparedDate as Date;
 };
 
+const checkIsEqual = (
+  configValue: string | Date,
+  sourceDate?: Date | typeof NaN | null,
+  format?: string
+) => {
+  const comparedDate = getComparedDate(sourceDate, configValue, format);
+  if (comparedDate === null) {
+    return false;
+  }
+
+  return isEqual(comparedDate, sourceDate as Date);
+};
+
 const checkIsBefore = (
   configValue: string | Date,
   sourceDate?: Date | typeof NaN | null,
@@ -60,6 +77,22 @@ const checkIsBefore = (
   }
 
   return isBefore(comparedDate, sourceDate as Date);
+};
+
+const checkIsBeforeOrEqual = (
+  configValue: string | Date,
+  sourceDate?: Date | typeof NaN | null,
+  format?: string
+) => {
+  const comparedDate = getComparedDate(sourceDate, configValue, format);
+  if (comparedDate === null) {
+    return false;
+  }
+
+  return (
+    isEqual(comparedDate, sourceDate as Date) ||
+    isBefore(comparedDate, sourceDate as Date)
+  );
 };
 
 const checkIsAfter = (
@@ -75,6 +108,22 @@ const checkIsAfter = (
   return isAfter(sourceDate as Date, comparedDate);
 };
 
+const checkIsAfterOrEqual = (
+  configValue: string | Date,
+  sourceDate?: Date | typeof NaN | null,
+  format?: string
+) => {
+  const comparedDate = getComparedDate(sourceDate, configValue, format);
+  if (comparedDate === null) {
+    return false;
+  }
+
+  return (
+    isEqual(comparedDate, sourceDate as Date) ||
+    isAfter(sourceDate as Date, comparedDate)
+  );
+};
+
 const pluginDate =
   (func: (fields: PluginFieldsType) => ConfigInterface) =>
   (value: PluginValueType, fields: PluginFieldsType) => {
@@ -84,6 +133,9 @@ const pluginDate =
       isAfter: true,
       isBefore: true,
       required: true,
+      isBeforeOrEqual: true,
+      isAfterOrEqual: true,
+      isEqual: true,
     };
 
     if (typeof value !== 'string') {
@@ -119,8 +171,28 @@ const pluginDate =
       );
     }
 
+    if (config.isBeforeOrEqual !== undefined) {
+      valid.isBeforeOrEqual = checkIsBeforeOrEqual(
+        config.isBeforeOrEqual,
+        sourceDate,
+        config.format
+      );
+    }
+
     if (config.isAfter !== undefined) {
       valid.isAfter = checkIsAfter(config.isAfter, sourceDate, config.format);
+    }
+
+    if (config.isAfterOrEqual !== undefined) {
+      valid.isAfter = checkIsAfterOrEqual(
+        config.isAfterOrEqual,
+        sourceDate,
+        config.format
+      );
+    }
+
+    if (config.isEqual !== undefined) {
+      valid.isEqual = checkIsEqual(config.isEqual, sourceDate, config.format);
     }
 
     return Object.values(valid).every((item) => item);

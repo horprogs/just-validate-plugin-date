@@ -63,3 +63,13 @@ validator.addField('#date', [
   },
 ]);
 ```
+
+## Validators
+
+- isAfter
+- isBefore
+- isBeforeOrEqual
+- isAfterOrEqual
+- isEqual
+
+
