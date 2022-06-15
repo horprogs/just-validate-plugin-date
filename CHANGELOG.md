@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/horprogs/Just-validate-plugin-date/compare/v1.1.1...v1.2.0) (2022-06-15)
+
+
+### Features
+
+* [#1](https://github.com/horprogs/Just-validate-plugin-date/issues/1) add isEqual, isBeforeOrEqual, isAfterOrEqual validators ([22706d6](https://github.com/horprogs/Just-validate-plugin-date/commit/22706d69e570561b3e448d268c3a715e1f255f25))
+
 ## [1.1.1](https://github.com/horprogs/Just-validate-plugin-date/compare/v1.1.0...v1.1.1) (2022-01-31)
 
 
