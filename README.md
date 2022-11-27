@@ -33,7 +33,7 @@ import JustValidatePluginDate from 'just-validate-plugin-date';
 Or if you don't use module bundlers, just include JustValidatePluginDate script on your page from CDN and call it as `window.JustValidatePluginDate`:
 
 ```html
-<script src="https://unpkg.com/just-validate@latest/dist/just-validate-plugin-date.production.min.js"></script>
+<script src="https://unpkg.com/browse/just-validate-plugin-date@1.2.0/dist/just-validate-plugin-date.production.min.js"></script>
 ```
 
 ## Usage
